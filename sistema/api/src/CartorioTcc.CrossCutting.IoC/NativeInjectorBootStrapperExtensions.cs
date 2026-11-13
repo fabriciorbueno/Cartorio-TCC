@@ -45,7 +45,13 @@ public static class NativeInjectorBootStrapperExtensions
             }
             else
             {
-                options.UseSqlServer(connectionString, sql =>
+                var sqlBuilder = new Microsoft.Data.SqlClient.SqlConnectionStringBuilder(connectionString);
+                if (string.IsNullOrWhiteSpace(sqlBuilder.InitialCatalog))
+                {
+                    sqlBuilder.InitialCatalog = "CartorioTcc";
+                }
+
+                options.UseSqlServer(sqlBuilder.ConnectionString, sql =>
                 {
                     sql.MigrationsAssembly(typeof(CartorioTccContext).Assembly.FullName);
                     sql.EnableRetryOnFailure(3);

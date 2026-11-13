@@ -19,10 +19,42 @@ public static class CartorioTccSeeder
         {
             if (context.Database.IsRelational())
             {
+                var conn = context.Database.GetDbConnection();
+                logger.LogInformation(
+                    "Conectando ao SQL Server ({DataSource} / Base: {Database}) e aplicando Migrations...",
+                    conn.DataSource,
+                    conn.Database);
+
                 await context.Database.MigrateAsync();
+
+                // Auto-correção resiliente caso Historico_Auditoria tenha sido criado anteriormente com BIGINT
+                await context.Database.ExecuteSqlRawAsync(@"
+IF EXISTS (
+    SELECT 1
+    FROM sys.columns c
+    INNER JOIN sys.types t ON c.system_type_id = t.system_type_id
+    WHERE c.object_id = OBJECT_ID(N'dbo.Historico_Auditoria')
+      AND c.name = N'Id_Auditoria'
+      AND t.name = N'bigint'
+)
+BEGIN
+    DROP TABLE [dbo].[Historico_Auditoria];
+    CREATE TABLE [dbo].[Historico_Auditoria] (
+        [Id_Auditoria] INT NOT NULL IDENTITY(1,1),
+        [Tabela] NVARCHAR(100) NOT NULL,
+        [Chave_Primaria] NVARCHAR(60) NOT NULL,
+        [Acao_Auditoria] INT NOT NULL,
+        [Login_Usuario] NVARCHAR(80) NOT NULL,
+        [Data_Ocorrencia] DATETIME2 NOT NULL,
+        [Valores_Antigos_Json] NVARCHAR(MAX) NULL,
+        [Valores_Novos_Json] NVARCHAR(MAX) NULL,
+        CONSTRAINT [PK_Historico_Auditoria] PRIMARY KEY ([Id_Auditoria])
+    );
+END");
             }
             else
             {
+                logger.LogInformation("Utilizando provedor EF Core InMemory ({Provider}).", context.Database.ProviderName);
                 await context.Database.EnsureCreatedAsync();
             }
         }
@@ -221,17 +253,17 @@ public static class CartorioTccSeeder
         await context.SaveChangesAsync();
 
         // Cônjuges e Certidões de Casamento
-        var conjJoao = new Conjuge(cliJoaoAzevedo.Id, "Maria Joana Azevedo", "42334455", "SSP", "Brasileiro(a)", "SP", "71428793860", new DateOnly(1982, 6, 10), "maria.joana@email.com", "F", "Casado(a)", "Arquiteta", "1932214455", endJoao);
+        var conjJoao = new Conjuge(cliJoaoAzevedo.Id, "Maria Joana Azevedo", "42334455", "SSP", "Brasileiro(a)", "SP", "71428793860", new DateOnly(1982, 6, 10), "maria.joana@email.com", "F", "Casado(a)", "Arquiteta", "1932214455", endJoao.Clonar());
         var certJoao = new CertidaoCasamento(cliJoaoAzevedo.Id, null, "2º Cartório de Registro Civil de Campinas", "12", "45", "1089", new DateOnly(2008, 5, 20), "Comunhão Parcial de Bens");
         cliJoaoAzevedo.DefinirConjuge(conjJoao);
         cliJoaoAzevedo.DefinirCertidaoCasamento(certJoao);
 
-        var conjFabricio = new Conjuge(cliFabricioLima.Id, "Jessica Correa Lima", "48990011", "SSP", "Brasileiro(a)", "SP", "28625587887", new DateOnly(1992, 9, 12), "jessica.lima@email.com", "F", "Casado(a)", "Administradora", "1932667788", endFabricio);
+        var conjFabricio = new Conjuge(cliFabricioLima.Id, "Jessica Correa Lima", "48990011", "SSP", "Brasileiro(a)", "SP", "28625587887", new DateOnly(1992, 9, 12), "jessica.lima@email.com", "F", "Casado(a)", "Administradora", "1932667788", endFabricio.Clonar());
         var certFabricio = new CertidaoCasamento(cliFabricioLima.Id, null, "1º Cartório de Registro Civil de Campinas", "8", "112", "3402", new DateOnly(2014, 11, 15), "Comunhão Parcial de Bens");
         cliFabricioLima.DefinirConjuge(conjFabricio);
         cliFabricioLima.DefinirCertidaoCasamento(certFabricio);
 
-        var conjMaria = new Conjuge(cliMariaJose.Id, "Raimundo José", "18776655", "SSP", "Brasileiro(a)", "SP", "60516604016", new DateOnly(1973, 4, 22), "raimundo.jose@email.com", "M", "Casado(a)", "Comerciante", "1938874411", endMaria);
+        var conjMaria = new Conjuge(cliMariaJose.Id, "Raimundo José", "18776655", "SSP", "Brasileiro(a)", "SP", "60516604016", new DateOnly(1973, 4, 22), "raimundo.jose@email.com", "M", "Casado(a)", "Comerciante", "1938874411", endMaria.Clonar());
         var certMaria = new CertidaoCasamento(cliMariaJose.Id, null, "2º Cartório de Notas de Campinas", "1", "23", "4512", new DateOnly(2001, 9, 10), "Comunhão Universal de Bens");
         cliMariaJose.DefinirConjuge(conjMaria);
         cliMariaJose.DefinirCertidaoCasamento(certMaria);

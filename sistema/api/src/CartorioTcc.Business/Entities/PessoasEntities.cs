@@ -79,7 +79,7 @@ public class Funcionario : AuditableEntity
         RgFuncionario = rgFuncionario.Trim();
         TelefoneFuncionario = Validador.SomenteNumeros(telefoneFuncionario);
         Cargo = cargo?.Trim();
-        Endereco = endereco;
+        Endereco = (endereco ?? Endereco.Vazio).Clonar();
         StatusFuncionario = status;
     }
 
@@ -180,7 +180,7 @@ public class Cliente : AuditableEntity
         RegimeBens = regimeBens?.Trim();
         ProfissaoCliente = profissaoCliente.Trim();
         TelefoneCliente = Validador.SomenteNumeros(telefoneCliente);
-        Endereco = endereco;
+        Endereco = (endereco ?? Endereco.Vazio).Clonar();
         StatusCliente = status;
     }
 
@@ -277,7 +277,7 @@ public class Conjuge : AuditableEntity
         EstadoCivilConjuge = estadoCivilConjuge.Trim();
         ProfissaoConjuge = profissaoConjuge.Trim();
         TelefoneConjuge = Validador.SomenteNumeros(telefoneConjuge);
-        Endereco = endereco;
+        Endereco = (endereco ?? Endereco.Vazio).Clonar();
     }
 }
 

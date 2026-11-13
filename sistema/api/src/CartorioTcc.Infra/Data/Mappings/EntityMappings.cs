@@ -231,6 +231,11 @@ public sealed class CertidaoCasamentoMapping : AuditableEntityMapping<CertidaoCa
         builder.Property(x => x.TermoCertidaoCasamento).HasColumnName("Termo_Certidao_Casamento").HasMaxLength(50).IsRequired();
         builder.Property(x => x.DataCertidaoCasamento).HasColumnName("Data_Certidao_Casamento").IsRequired();
         builder.Property(x => x.Averbacoes).HasColumnName("Averbacoes").HasMaxLength(500);
+
+        builder.HasOne(x => x.Conjuge)
+            .WithMany()
+            .HasForeignKey(x => x.IdConjuge)
+            .OnDelete(DeleteBehavior.Restrict);
     }
 }
 
@@ -369,7 +374,7 @@ public sealed class EscrituraMapping : AuditableEntityMapping<Escritura>
         builder.Property(x => x.FolhaInicial).HasColumnName("Folha_Inicial");
         builder.Property(x => x.FolhaFinal).HasColumnName("Folha_Final");
         builder.Property(x => x.ValorOperacao).HasColumnName("Valor_Operacao").HasPrecision(17, 2);
-        builder.Property(x => x.TextoMinuta).HasColumnName("Texto_Minuta").HasMaxLength(8000);
+        builder.Property(x => x.TextoMinuta).HasColumnName("Texto_Minuta");
         builder.Property(x => x.StatusEscritura).HasColumnName("Id_Status_Escritura").HasConversion<int>();
         builder.Property(x => x.MotivoInativacao).HasColumnName("Motivo_Inativacao").HasMaxLength(500);
         builder.Property(x => x.DataInicioProcesso).HasColumnName("Data_Inicio_Processo");

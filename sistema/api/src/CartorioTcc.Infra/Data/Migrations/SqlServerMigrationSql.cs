@@ -34,6 +34,6 @@ public static class SqlServerMigrationSql
                 CREATE SEQUENCE dbo.Sequencia_Protocolo AS INT START WITH 10 INCREMENT BY 1;
 
             IF OBJECT_ID(N'dbo.Sequencia_Auditoria', N'SO') IS NULL
-                CREATE SEQUENCE dbo.Sequencia_Auditoria AS BIGINT START WITH 1 INCREMENT BY 1;
+                CREATE SEQUENCE dbo.Sequencia_Auditoria AS INT START WITH 1 INCREMENT BY 1;
             """);
 }

@@ -11,7 +11,9 @@ namespace CartorioTcc.IntegrationTests;
 public sealed class CartorioTccApiIntegrationTests(WebApplicationFactory<Program> factory)
     : IClassFixture<WebApplicationFactory<Program>>
 {
-    private readonly HttpClient _client = factory.CreateClient();
+    private readonly HttpClient _client = factory
+        .WithWebHostBuilder(b => b.UseSetting("Database:UseInMemory", "true"))
+        .CreateClient();
 
     [Fact]
     public async Task Health_ECatalogos_DevemRetornarStatus200OkComDadosIniciaisDoTcc()

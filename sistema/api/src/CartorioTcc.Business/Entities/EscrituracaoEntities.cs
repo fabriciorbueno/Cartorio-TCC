@@ -74,7 +74,7 @@ public class Imovel : AuditableEntity
             : null;
         InscricaoMunicipal = inscricaoMunicipal?.Trim();
         CartorioRegistroImoveis = cartorioRegistroImoveis?.Trim();
-        Endereco = endereco;
+        Endereco = (endereco ?? Endereco.Vazio).Clonar();
     }
 }
 

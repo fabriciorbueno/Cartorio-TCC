@@ -43,9 +43,14 @@ public sealed class CartorioTccContext(
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(CartorioTccContext).Assembly);
     }
 
-    public async Task<bool> CommitAsync(CancellationToken cancellationToken = default)
+    public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
     {
         AplicarAuditoriaAutomatica();
+        return base.SaveChangesAsync(cancellationToken);
+    }
+
+    public async Task<bool> CommitAsync(CancellationToken cancellationToken = default)
+    {
         return await SaveChangesAsync(cancellationToken) > 0;
     }
 

@@ -7,8 +7,8 @@ namespace CartorioTcc.Business.Core.Entities;
 /// </summary>
 public abstract class AuditableEntity : Entity
 {
-    public DateTime DtCriacao { get; private set; }
-    public string LoginUsuarioCriacao { get; private set; } = string.Empty;
+    public DateTime DtCriacao { get; private set; } = DateTime.Now;
+    public string LoginUsuarioCriacao { get; private set; } = "admin@saec.com";
     public DateTime? DtAlteracao { get; private set; }
     public string? LoginUsuarioAlteracao { get; private set; }
 
