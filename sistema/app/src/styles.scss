@@ -1,0 +1,241 @@
+@use 'sass:map';
+@use '@angular/material' as mat;
+
+// ============================================================================
+// 1. TEMA CUSTOMIZADO MATERIAL DESIGN 3 (M3) — IDENTIDADE VISUAL CARTORIOTCC
+// ============================================================================
+html {
+  @include mat.theme((
+    color: (
+      theme-type: light,
+      primary: mat.$azure-palette,
+      tertiary: mat.$blue-palette,
+    ),
+    typography: Roboto,
+    density: 0,
+  ));
+}
+
+:root {
+  --saec-primary: #0f3d75;
+  --saec-primary-dark: #09274d;
+  --saec-primary-light: #e8f0fe;
+  --saec-secondary: #1e6091;
+  --saec-accent: #b48a3e;
+  --saec-surface: #ffffff;
+  --saec-background: #f4f6f9;
+  --saec-border: #dce3ec;
+  --saec-text: #1c2536;
+  --saec-text-muted: #5a687c;
+  --saec-success: #1b7f4b;
+  --saec-success-bg: #e6f4ea;
+  --saec-warning: #b06000;
+  --saec-warning-bg: #fef7e0;
+  --saec-danger: #c5221f;
+  --saec-danger-bg: #fce8e6;
+}
+
+// ============================================================================
+// 2. MIXINS DE RESPONSIVIDADE E UTILITÁRIOS SCSS (sm, md, lg, xl)
+// ============================================================================
+$breakpoints: (
+  'sm': 576px,
+  'md': 768px,
+  'lg': 992px,
+  'xl': 1200px
+);
+
+@mixin respond-to($bp) {
+  @media (min-width: map.get($breakpoints, $bp)) {
+    @content;
+  }
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: 'Roboto', 'Segoe UI', sans-serif;
+  background-color: var(--saec-background);
+  color: var(--saec-text);
+  -webkit-font-smoothing: antialiased;
+}
+
+// Classes Utilitárias de Layout, Flexbox, Grid, Espaçamento e Tipografia
+.w-full { width: 100% !important; }
+.h-full { height: 100% !important; }
+
+.flex { display: flex; }
+.flex-col { display: flex; flex-direction: column; }
+.flex-row { display: flex; flex-direction: row; }
+.flex-wrap { flex-wrap: wrap; }
+.items-center { align-items: center; }
+.items-start { align-items: flex-start; }
+.justify-between { justify-content: space-between; }
+.justify-end { justify-content: flex-end; }
+.justify-center { justify-content: center; }
+.flex-1 { flex: 1 1 0%; }
+
+.gap-1 { gap: 0.25rem; }
+.gap-2 { gap: 0.5rem; }
+.gap-3 { gap: 0.75rem; }
+.gap-4 { gap: 1rem; }
+.gap-6 { gap: 1.5rem; }
+
+.mt-2 { margin-top: 0.5rem; }
+.mt-4 { margin-top: 1rem; }
+.mb-2 { margin-bottom: 0.5rem; }
+.mb-4 { margin-bottom: 1rem; }
+.p-4 { padding: 1rem; }
+.p-6 { padding: 1.5rem; }
+
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+.text-muted { color: var(--saec-text-muted); }
+.text-primary { color: var(--saec-primary); }
+.text-sm { font-size: 0.85rem; }
+.text-lg { font-size: 1.125rem; }
+.font-bold { font-weight: 600; }
+
+// Grid Responsivo de Formulários Notariais
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+
+  @include respond-to('md') {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include respond-to('lg') {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.form-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+
+  @include respond-to('md') {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.form-grid-4 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+
+  @include respond-to('sm') {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include respond-to('lg') {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.col-span-full {
+  grid-column: 1 / -1;
+}
+
+// ============================================================================
+// 3. OVERRIDES PADRONIZADOS DOS COMPONENTES ANGULAR MATERIAL (mat-card, etc.)
+// ============================================================================
+.mat-mdc-card {
+  border-radius: 12px !important;
+  border: 1px solid var(--saec-border);
+  box-shadow: 0 2px 8px rgba(15, 61, 117, 0.05) !important;
+  background-color: var(--saec-surface) !important;
+}
+
+.mat-mdc-form-field {
+  width: 100%;
+}
+
+.page-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+
+  h1 {
+    margin: 0;
+    font-size: 1.45rem;
+    font-weight: 700;
+    color: var(--saec-primary);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  p {
+    margin: 0.25rem 0 0;
+    font-size: 0.9rem;
+    color: var(--saec-text-muted);
+  }
+}
+
+// Badges semânticos de Status (Ativo/Inativo, Etapas de Escritura, DOI)
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.25rem 0.65rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  white-space: nowrap;
+
+  &.ativo, &.finalizada, &.sucesso {
+    background-color: var(--saec-success-bg);
+    color: var(--saec-success);
+  }
+
+  &.andamento, &.alerta {
+    background-color: var(--saec-warning-bg);
+    color: var(--saec-warning);
+  }
+
+  &.inativo, &.erro {
+    background-color: var(--saec-danger-bg);
+    color: var(--saec-danger);
+  }
+
+  &.info {
+    background-color: var(--saec-primary-light);
+    color: var(--saec-primary);
+  }
+}
+
+// Folha de Papel Timbrado Notarial (Prévia de Minuta de Escritura UC-09 / Certidão UC-11)
+.notary-paper {
+  background: #fffef9;
+  border: 1px solid #d4cbb8;
+  border-left: 5px solid var(--saec-accent);
+  border-radius: 6px;
+  padding: 1.5rem 2rem;
+  font-family: 'Georgia', 'Times New Roman', serif;
+  line-height: 1.65;
+  white-space: pre-wrap;
+  color: #1f2421;
+  box-shadow: inset 0 0 24px rgba(180, 138, 62, 0.05);
+}
+
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+  border-radius: 8px;
+  border: 1px solid var(--saec-border);
+  background: #fff;
+
+  table {
+    width: 100%;
+  }
+}

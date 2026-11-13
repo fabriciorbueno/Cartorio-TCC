@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="CamposObrigatorios" xml:space="preserve"><value>Campos obrigatórios não preenchidos *</value></data>
+  <data name="PermissaoAlteradaSucesso" xml:space="preserve"><value>Permissão alterada com sucesso.</value></data>
+  <data name="PermissaoIncluidaSucesso" xml:space="preserve"><value>Permissão inserida com sucesso.</value></data>
+  <data name="PermissaoExcluidaSucesso" xml:space="preserve"><value>Permissão excluída com sucesso.</value></data>
+  <data name="PermissaoNaoEncontrada" xml:space="preserve"><value>Permissão não encontrada.</value></data>
+  <data name="PermissaoDuplicada" xml:space="preserve"><value>Já existe permissão cadastrada para este perfil e página.</value></data>
+  <data name="FuncionarioInseridoSucesso" xml:space="preserve"><value>Funcionário inserido com sucesso.</value></data>
+  <data name="FuncionarioAlteradoSucesso" xml:space="preserve"><value>Funcionário alterado com sucesso.</value></data>
+  <data name="FuncionarioExcluidoSucesso" xml:space="preserve"><value>Funcionário excluído com sucesso.</value></data>
+  <data name="FuncionarioNaoEncontrado" xml:space="preserve"><value>Funcionário não encontrado.</value></data>
+  <data name="FuncionarioJaCadastrado" xml:space="preserve"><value>Já existe funcionário cadastrado com este CPF ou e-mail.</value></data>
+  <data name="ClienteInseridoSucesso" xml:space="preserve"><value>Cliente inserido com sucesso.</value></data>
+  <data name="ClienteAlteradoSucesso" xml:space="preserve"><value>Cliente alterado com sucesso.</value></data>
+  <data name="ClienteExcluidoSucesso" xml:space="preserve"><value>Cliente excluído com sucesso.</value></data>
+  <data name="ClienteNaoEncontrado" xml:space="preserve"><value>Cliente não encontrado.</value></data>
+  <data name="ClienteJaCadastrado" xml:space="preserve"><value>Já existe cliente cadastrado com este CPF.</value></data>
+  <data name="ClienteMenorDeIdade" xml:space="preserve"><value>O cliente precisa ter idade maior ou igual a 18 anos.</value></data>
+  <data name="CpfInvalido" xml:space="preserve"><value>O CPF informado é inválido.</value></data>
+  <data name="CnpjInvalido" xml:space="preserve"><value>O CNPJ informado é inválido.</value></data>
+  <data name="NomeInvalido" xml:space="preserve"><value>O campo Nome Completo deve conter apenas letras.</value></data>
+  <data name="CepInvalido" xml:space="preserve"><value>O campo CEP deve conter 8 dígitos numéricos.</value></data>
+  <data name="TelefoneInvalido" xml:space="preserve"><value>O campo Telefone deve conter apenas números (10 ou 11 dígitos).</value></data>
+  <data name="EmailInvalido" xml:space="preserve"><value>O e-mail informado é inválido.</value></data>
+  <data name="SenhaInvalida" xml:space="preserve"><value>A senha deve ter tamanho entre 6 e 11 caracteres.</value></data>
+  <data name="SenhasNaoConferem" xml:space="preserve"><value>A confirmação de senha não confere com a senha informada.</value></data>
+  <data name="ValorOrcamentoInvalido" xml:space="preserve"><value>O valor não pode ser menor ou igual a zero.</value></data>
+  <data name="OrcamentoGeradoSucesso" xml:space="preserve"><value>Orçamento gerado com sucesso.</value></data>
+  <data name="ProtocoloGeradoSucesso" xml:space="preserve"><value>Protocolo gerado com sucesso.</value></data>
+  <data name="ProtocoloAlteradoSucesso" xml:space="preserve"><value>Protocolo alterado com sucesso.</value></data>
+  <data name="ProtocoloExcluidoSucesso" xml:space="preserve"><value>Protocolo excluído com sucesso.</value></data>
+  <data name="ProtocoloNaoEncontrado" xml:space="preserve"><value>Não foi possível encontrar protocolo.</value></data>
+  <data name="ProtocoloInvalido" xml:space="preserve"><value>Número do protocolo inválido.</value></data>
+  <data name="EscrituraInseridaSucesso" xml:space="preserve"><value>Escritura inserida com sucesso.</value></data>
+  <data name="EscrituraAlteradaSucesso" xml:space="preserve"><value>Escritura alterada com sucesso.</value></data>
+  <data name="EscrituraFinalizadaSucesso" xml:space="preserve"><value>Escritura lavrada e finalizada com sucesso. Índice e DOI atualizados.</value></data>
+  <data name="EscrituraExcluidaSucesso" xml:space="preserve"><value>Escritura excluída com sucesso.</value></data>
+  <data name="EscrituraNaoEncontrada" xml:space="preserve"><value>A escritura não foi encontrada.</value></data>
+  <data name="EscrituraJaCadastradaParaProtocolo" xml:space="preserve"><value>Já existe uma escritura cadastrada para o protocolo informado.</value></data>
+  <data name="EscrituraFinalizadaImutavel" xml:space="preserve"><value>Escrituras finalizadas (lavradas) não podem ser alteradas ou inativadas.</value></data>
+  <data name="MotivoInativacaoObrigatorio" xml:space="preserve"><value>É obrigatório informar a justificativa para inativar uma escritura em andamento.</value></data>
+  <data name="OutorganteOutorgadoIguais" xml:space="preserve"><value>O Outorgante e o Outorgado não podem ser a mesma pessoa.</value></data>
+  <data name="NenhumaEscrituraDisponivelDoi" xml:space="preserve"><value>Nenhuma escritura finalizada disponível para geração do arquivo DOI.</value></data>
+  <data name="SelecioneEscrituraAntesDeGerar" xml:space="preserve"><value>Selecione a escritura antes de gerar o arquivo.</value></data>
+  <data name="ArquivoApenasPdf" xml:space="preserve"><value>O sistema aceita somente documentos digitalizados no formato PDF (.pdf).</value></data>
+  <data name="BackupRealizadoSucesso" xml:space="preserve"><value>Backup realizado com sucesso!</value></data>
+  <data name="BackupAgendadoSucesso" xml:space="preserve"><value>Backup criptografado agendado com sucesso!</value></data>
+  <data name="BackupDataDeveSerMaiorQueHoje" xml:space="preserve"><value>A data do agendamento do backup deve ser maior do que hoje.</value></data>
+</root>
